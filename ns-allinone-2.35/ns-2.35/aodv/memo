@@ -1,0 +1,11 @@
+2017/07/26
+aodv_packet.h
+RREQパケットのデータ内容にさらし端末入れる型と
+sizeを追加
+
+aodv.cc
+RREQパケットを記入
+さらし端末数
+rq->rq_exposures
+
+

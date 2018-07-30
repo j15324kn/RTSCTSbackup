@@ -1,0 +1,6 @@
+./mac-802_11.cc:double Mac802_11::txtime(int )
+./mac-802_11.h.old:	double txtime(int bytes) { /* clobber inherited txtime() */ abort(); return 0;}
+./phy.h:	inline double txtime(int bytes) {
+./mac-802_11Ext.h:	double txtime(int bytes) { /* clobber inherited txtime() */
+./mac.h:	inline double txtime(int bytes) {
+./mac-802_11.h:	double txtime(int bytes) { /* clobber inherited txtime() */ abort(); return 0;}

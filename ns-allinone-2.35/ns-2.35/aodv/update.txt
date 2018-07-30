@@ -1,0 +1,8 @@
+aodv.cc
+
+＞sendRequestにメソッドに対して、リクエストを送る際に、自身が送信する電波強度の値を、[rq_radio_power]という変数に格納する。
+	＞[rq_radio_power]はaodv_packet.h内の構造体、hdr_aodv_requestにで定義
+＞aodv_rtable.h内のAODV_Neighborクラスは、ネイバーリストに格納される変数を定義している。
+	＞ここに、隣接ノードの距離を示す[nb_distance]という変数を追加
+
+

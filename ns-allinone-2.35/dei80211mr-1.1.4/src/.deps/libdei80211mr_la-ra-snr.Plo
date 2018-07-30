@@ -1,0 +1,641 @@
+libdei80211mr_la-ra-snr.lo: ra-snr.cc ra-snr.h rateadapter.h \
+ Mac80211EventHandler.h phymodes.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/packet.h \
+ /usr/include/string.h /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stddef.h \
+ /usr/include/xlocale.h /usr/include/assert.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/config.h \
+ /usr/include/sys/types.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/time.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/bits/time.h \
+ /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/alloca.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/autoconf.h \
+ /home/j15324kn/ns-allinone-2.35/tclcl-1.20/tclcl.h \
+ /home/j15324kn/ns-allinone-2.35/include/tcl.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h \
+ /home/j15324kn/ns-allinone-2.35/include/tclDecls.h \
+ /home/j15324kn/ns-allinone-2.35/include/tclPlatDecls.h \
+ /home/j15324kn/ns-allinone-2.35/otcl-1.14/otcl.h \
+ /home/j15324kn/ns-allinone-2.35/tclcl-1.20/tclcl-config.h \
+ /home/j15324kn/ns-allinone-2.35/tclcl-1.20/tracedvar.h \
+ /home/j15324kn/ns-allinone-2.35/tclcl-1.20/tclcl-mappings.h \
+ /usr/include/strings.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/getopt.h \
+ /usr/include/arpa/inet.h /usr/include/netinet/in.h /usr/include/stdint.h \
+ /usr/include/bits/wchar.h /usr/include/sys/socket.h \
+ /usr/include/sys/uio.h /usr/include/bits/uio.h \
+ /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/in.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/scheduler.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/heap.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/object.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/lib/bsd-list.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/packet-stamp.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mobile/antenna.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/object.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/ns-process.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/dccp/dccp_packets.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/dccp/dccp_types.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/dccp/dccp_opt.h peerstats.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/fstream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/istream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ios \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iosfwd \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++config.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/os_defines.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/cpu_defines.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stringfwd.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/postypes.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwchar \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstddef \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/char_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_algobase.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/functexcept.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception_defines.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/cpp_type_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/type_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/numeric_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_pair.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/move.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/concept_check.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/debug/debug.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/localefwd.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++locale.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/clocale \
+ /usr/include/locale.h /usr/include/bits/locale.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cctype \
+ /usr/include/ctype.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ios_base.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/atomicity.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/setjmp.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/atomic_word.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/string \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/allocator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++allocator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/new_allocator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/new \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream_insert.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cxxabi-forced.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_function.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/backward/binders.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/initializer_list \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/streambuf \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwctype \
+ /usr/include/wctype.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_base.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf_iterator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_inline.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ostream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/istream.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/codecvt.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdio \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/basic_file.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++io.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/fstream.tcc \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/timer-handler.h \
+ mac-802_11mr.h /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/bi-connector.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/ip.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/packet.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/routing/route.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/ll.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/link/delay.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/queue/queue.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/connector.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/arp.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/scheduler.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/lanRouter.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/varp.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/phy.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/channel.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/node.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/connector.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/phy.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/net-interface.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mobile/energy-model.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdlib \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/trace/trace.h \
+ /usr/include/math.h /usr/include/bits/huge_val.h \
+ /usr/include/bits/huge_valf.h /usr/include/bits/huge_vall.h \
+ /usr/include/bits/inf.h /usr/include/bits/nan.h \
+ /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
+ /usr/include/bits/mathinline.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/trace/basetrace.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/tcp/tcp.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/agent.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/timer-handler.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/apps/app.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/ns-process.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/tools/rng.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/location.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/routing/rtmodule.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/routing/addr-params.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier-hash.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier-hier.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/routing/addr-params.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/common/parentnode.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/routing/address.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier-addr.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/marshall.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/trace/cmu-trace.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/trace/trace.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mobile/god.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/diffusion/hash_table.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/diffusion/diff_header.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/diffusion/iflist.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac-802_11.h \
+ /home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac-timers.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/list \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_list.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/list.tcc \
+ mac-timersmr.h power_profile.h PER.h adt/DLList.h adt/NSNode.h \
+ adt/Position.h adt/Object.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iostream
+
+ra-snr.h:
+
+rateadapter.h:
+
+Mac80211EventHandler.h:
+
+phymodes.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/packet.h:
+
+/usr/include/string.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/assert.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/config.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/time.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/alloca.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/autoconf.h:
+
+/home/j15324kn/ns-allinone-2.35/tclcl-1.20/tclcl.h:
+
+/home/j15324kn/ns-allinone-2.35/include/tcl.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/home/j15324kn/ns-allinone-2.35/include/tclDecls.h:
+
+/home/j15324kn/ns-allinone-2.35/include/tclPlatDecls.h:
+
+/home/j15324kn/ns-allinone-2.35/otcl-1.14/otcl.h:
+
+/home/j15324kn/ns-allinone-2.35/tclcl-1.20/tclcl-config.h:
+
+/home/j15324kn/ns-allinone-2.35/tclcl-1.20/tracedvar.h:
+
+/home/j15324kn/ns-allinone-2.35/tclcl-1.20/tclcl-mappings.h:
+
+/usr/include/strings.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/sys/uio.h:
+
+/usr/include/bits/uio.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/bits/in.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/scheduler.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/heap.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/object.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/lib/bsd-list.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/packet-stamp.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mobile/antenna.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/object.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/ns-process.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/dccp/dccp_packets.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/dccp/dccp_types.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/dccp/dccp_opt.h:
+
+peerstats.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/fstream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/istream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ios:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iosfwd:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++config.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/os_defines.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/cpu_defines.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stringfwd.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/postypes.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwchar:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstddef:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/char_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_algobase.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/functexcept.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception_defines.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/cpp_type_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/type_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/numeric_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_pair.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/move.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/concept_check.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_types.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_funcs.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/debug/debug.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/localefwd.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++locale.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cctype:
+
+/usr/include/ctype.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ios_base.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/atomicity.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/atomic_word.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/string:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/new_allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/new:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream_insert.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cxxabi-forced.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_function.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/backward/binders.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/initializer_list:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/streambuf:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_base.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf_iterator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_inline.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ostream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/istream.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/codecvt.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdio:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/basic_file.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++io.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/fstream.tcc:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/timer-handler.h:
+
+mac-802_11mr.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/bi-connector.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/ip.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/packet.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/routing/route.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/ll.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/link/delay.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/queue/queue.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/connector.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/arp.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/scheduler.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/lanRouter.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/varp.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/phy.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/channel.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/node.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/connector.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/phy.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/net-interface.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mobile/energy-model.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdlib:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/trace/trace.h:
+
+/usr/include/math.h:
+
+/usr/include/bits/huge_val.h:
+
+/usr/include/bits/huge_valf.h:
+
+/usr/include/bits/huge_vall.h:
+
+/usr/include/bits/inf.h:
+
+/usr/include/bits/nan.h:
+
+/usr/include/bits/mathdef.h:
+
+/usr/include/bits/mathcalls.h:
+
+/usr/include/bits/mathinline.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/trace/basetrace.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/tcp/tcp.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/agent.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/timer-handler.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/apps/app.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/ns-process.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/tools/rng.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/location.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/routing/rtmodule.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/routing/addr-params.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier-hash.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier-hier.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/routing/addr-params.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/common/parentnode.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/routing/address.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/classifier/classifier-addr.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/marshall.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/trace/cmu-trace.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/trace/trace.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mobile/god.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/diffusion/hash_table.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/diffusion/diff_header.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/diffusion/iflist.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac-802_11.h:
+
+/home/j15324kn/ns-allinone-2.35/ns-2.35/mac/mac-timers.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/list:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_list.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/list.tcc:
+
+mac-timersmr.h:
+
+power_profile.h:
+
+PER.h:
+
+adt/DLList.h:
+
+adt/NSNode.h:
+
+adt/Position.h:
+
+adt/Object.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iostream:

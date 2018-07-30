@@ -1,0 +1,10 @@
+#ifndef __CALC_THRESHOLD_H__
+#define __CALC_THRESHOLD_H__ 1
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+    double rev_threshold(double rxThresh_);
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif /* __CALC_THRESHOLD_H__*/

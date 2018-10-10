@@ -35,6 +35,8 @@ static int limit_route_erequest = 0;
 static int route_request = 0;
 #endif
 
+static int route_request = 0; //debug出力の為　nakaba
+
 
 /*
    TCL Hooks
@@ -229,6 +231,7 @@ LocalRepairTimer::handle(Event* p)  {  // SRD: 5/4/99
 #ifdef DEBUG
     fprintf(stderr,"Node %d: Dst - %d, failed local repair\n",index, rt->rt_dst);
 #endif      
+    // cout << "sendingRERR:" << index << endl;
   }
   Packet::free((Packet *)p);
 }
@@ -373,7 +376,8 @@ AODV::handle_link_failure(nsaddr_t id) {
   struct hdr_aodv_error *re = HDR_AODV_ERROR(rerr);
 
   re->DestCount = 0;
-  for(rt = rtable.head(); rt; rt = rtn) {  // for each rt entry
+  for(rt = rtable.head(); rt; rt = rtn) {  // for each rt entry　　　各rtエントリーについて
+
     rtn = rt->rt_link.le_next; 
     if ((rt->rt_hops != INFINITY2) && (rt->rt_nexthop == id) ) {
       assert (rt->rt_flags == RTF_UP);
@@ -390,6 +394,7 @@ AODV::handle_link_failure(nsaddr_t id) {
       rt_down(rt);
     }
     // remove the lost neighbor from all the precursor lists
+    // すべてのネイバーリストから失われた隣接ノードを取り除く
     rt->pc_delete(id);
   }   
 
@@ -441,7 +446,7 @@ AODV::rt_down(aodv_rt_entry *rt) {
   if(rt->rt_flags == RTF_DOWN) {
     return;
   }
-
+  //cout << "通過してるか確認:" << CURRENT_TIME << endl;
   // assert (rt->rt_seqno%2); // is the seqno odd?
   rt->rt_last_hop_count = rt->rt_hops;
   rt->rt_hops = INFINITY2;
@@ -533,7 +538,8 @@ AODV::rt_purge() {
     rtn = rt->rt_link.le_next;
     if ((rt->rt_flags == RTF_UP) && (rt->rt_expire < now)) {
       // if a valid route has expired, purge all packets from 
-      // send buffer and invalidate the route.                    
+      // send buffer and invalidate the route.
+      // 有効なルートが期限切れになっている場合は、送信バッファからすべてのパケットをパージしてルートを無効                    
       assert(rt->rt_hops != INFINITY2);
       while((p = rqueue.deque(rt->rt_dst))) {
 #ifdef DEBUG
@@ -715,8 +721,8 @@ AODV::recvRequest(Packet *p) {
       { // はじめのRREQを受信してからTwait(50[ms])秒経過していない(タイマー待ち時間内)であり、かつ、このRREQ中の最低バッテリ値が今までの最良のものよりも好条件であるならば
 
         if(dst_hop_count[rq->rq_src][rq->rq_bcast_id] >= rq->rq_hop_count){
-      //    printf("[%d]",rq->rq_bcast_id);
-        //  printf("[%4.5f](sec)_______________Node[%d]がNode[%d]からRREQを重複受信しました。このRREQ中のさらし端末数[%d]は現在の最大値[%4f]よりも好条件である。\n",CURRENT_TIME,index, ih->saddr(),rq->rq_sara,dst_min_energy[rq->rq_src][rq->rq_bcast_id]);
+          //    printf("[%d]",rq->rq_bcast_id);
+          //  printf("[%4.5f](sec)_______________Node[%d]がNode[%d]からRREQを重複受信しました。このRREQ中のさらし端末数[%d]は現在の最大値[%4f]よりも好条件である。\n",CURRENT_TIME,index, ih->saddr(),rq->rq_sara,dst_min_energy[rq->rq_src][rq->rq_bcast_id]);
           //printf("sara%d\n" , rq->rq_sara );
           //dst_min_energy[rq->rq_src][rq->rq_bcast_id] = rq->rq_min_energy; // 現在までの経路最小バッテリ値の最大値を更新する
           dst_min_energy[rq->rq_src][rq->rq_bcast_id] = rq->rq_sara; // 現在までの経路最小バッテリ値の最大値を更新する
@@ -1085,7 +1091,9 @@ AODV::recvError(Packet *p) {
         drop(pkt, DROP_RTR_MAC_CALLBACK);
       }
 
+
       // if precursor list non-empty add to RERR and delete the precursor list
+      // プリコーサリストが空でなければRERRに追加してプリコーサリストを削除する
       if (!rt->pc_empty()) {
         nre->unreachable_dst[nre->DestCount] = rt->rt_dst;
         nre->unreachable_dst_seqno[nre->DestCount] = rt->rt_seqno;
@@ -1378,7 +1386,7 @@ AODV::sendRequest(nsaddr_t dst) {
   fprintf(stderr, "(%2d) - %2d sending Route Request, dst: %d\n",
       ++route_request, index, rt->rt_dst);
 #endif // DEBUG
-
+  //cout << "RREQが発信されました！時刻:" << CURRENT_TIME << endl;
   // Determine the TTL to be used this time. 
   // Dynamic TTL evaluation - SRD
 
@@ -1654,11 +1662,9 @@ AODV::sendHello() {
   //パケットオブジェクトを割り当て
 
   Packet *p = Packet::alloc();
-  AODV_Neighbor *nb = nbhead.lh_first;  //20180704tuika　ネイバーリストオブジェクトの割当て？
   struct hdr_cmn *ch = HDR_CMN(p);
   struct hdr_ip *ih = HDR_IP(p);
   struct hdr_aodv_reply *rh = HDR_AODV_REPLY(p);
-  struct hdr_aodv_request *rq = HDR_AODV_REQUEST(p);  //ポインタrqを通してRREQヘッダにアクセスできるようにする　nagumo
   //aodv_rt_entry *rt;
 
 #ifdef DEBUG
@@ -1686,36 +1692,36 @@ AODV::sendHello() {
   ih->dport() = RT_PORT;
   ih->ttl_ = 1;
 
-/*
-  for(; nb; nb = nb->nb_link.le_next) {
+  /*
+     for(; nb; nb = nb->nb_link.le_next) {
 
-    if(rq->rq_nodeid == nb->nb_addr){
-      double dista = nb->nb_mdistance;
+     if(rq->rq_nodeid == nb->nb_addr){
+     double dista = nb->nb_mdistance;
 
-      //    printf("test (w) (%0.2fm)\n", dista ); //RSCH nagumo
-      //    printf("test mdistance(w) (%0.2fm)\n", nb->nb_mdistance ); //RSCH nagumo
-      rq->rq_nodeid = index;
-      if(dista < nb->nb_mdistance ){
+  //    printf("test (w) (%0.2fm)\n", dista ); //RSCH nagumo
+  //    printf("test mdistance(w) (%0.2fm)\n", nb->nb_mdistance ); //RSCH nagumo
+  rq->rq_nodeid = index;
+  if(dista < nb->nb_mdistance ){
 
-      }
-    }
+  }
+  }
   }
 
 
 
   int M =0;
   for(int m = 0; m < 100; m++){  //ノード数と配列の長さで回す数を変更
-    if(rq->rq_testlast_list[m] == index){
-      M = m;
-    }
+  if(rq->rq_testlast_list[m] == index){
+  M = m;
+  }
   };
   double dista = rq->rq_exposure_list[M];
 
   for(int s = 0; s <100; s++ ){
-    if(rq->rq_exposure_list[s] > dista){ //自身の距離より離れた（距離の大きい）ノードをカウントしている
-      rq->rq_sara++;
-      printf("sara%d\n" , rq->rq_sara );
-    }
+  if(rq->rq_exposure_list[s] > dista){ //自身の距離より離れた（距離の大きい）ノードをカウントしている
+  rq->rq_sara++;
+  printf("sara%d\n" , rq->rq_sara );
+  }
   }
   rq->rq_sarag = rq->rq_sara;
 
@@ -1727,26 +1733,26 @@ AODV::sendHello() {
   int kk =0;
   for(; nb; nb = nb->nb_link.le_next) {
 
-    //rq->rq_exposure = nb->nb_mdistance;   //01/10 nagumo
+  //rq->rq_exposure = nb->nb_mdistance;   //01/10 nagumo
 
-    //    printf("Node ADDR\t\t:\t%d\n",nb->nb_addr);//ネイバーリストに格納されている通信先
-    //  printf("nfdonononononononononononR\t\t:\t%d\n",rq->rq_nodeid);//ネイバーリストに格納されている通信先
-    //    printf("nb_expire\t\t:\t%f\n",nb->nb_expire);//ネイバーリスト保持時間
-    //    printf("nb_distance\t:\t%f\n",nb->nb_distance);//その通信先までの距離
-    //    printf("nb_distance(w)\t:\t%e (%0.2fm)\n", nb->nb_distance ,rev_threshold( nb->nb_distance ) ); //RSCH
-    //    printf("nb_mdistance(w) (%0.2fm)\n", nb->nb_mdistance ); //RSCH nagumo
-    //    printf("mmmmmmmmmmmmmmmm(w) (%0.2fm)\n", rq->rq_mdistance ); //RSCH nagumo
-    //    printf("---------------------------------\n");
-    //if(nb->nb_addr == id) break;
-    rq->rq_exposure_list[kk] = nb->nb_mdistance;   //01/10 nagumo
-    rq->rq_testlast_list[kk] = nb->nb_addr;   //01/10 nagumo
-    cout << "時間:[" << CURRENT_TIME << "]" << endl;
-    cout << "index:" << index << endl;
+  //    printf("Node ADDR\t\t:\t%d\n",nb->nb_addr);//ネイバーリストに格納されている通信先
+  //  printf("nfdonononononononononononR\t\t:\t%d\n",rq->rq_nodeid);//ネイバーリストに格納されている通信先
+  //    printf("nb_expire\t\t:\t%f\n",nb->nb_expire);//ネイバーリスト保持時間
+  //    printf("nb_distance\t:\t%f\n",nb->nb_distance);//その通信先までの距離
+  //    printf("nb_distance(w)\t:\t%e (%0.2fm)\n", nb->nb_distance ,rev_threshold( nb->nb_distance ) ); //RSCH
+  //    printf("nb_mdistance(w) (%0.2fm)\n", nb->nb_mdistance ); //RSCH nagumo
+  //    printf("mmmmmmmmmmmmmmmm(w) (%0.2fm)\n", rq->rq_mdistance ); //RSCH nagumo
+  //    printf("---------------------------------\n");
+  //if(nb->nb_addr == id) break;
+  rq->rq_exposure_list[kk] = nb->nb_mdistance;   //01/10 nagumo
+  rq->rq_testlast_list[kk] = nb->nb_addr;   //01/10 nagumo
+  cout << "時間:[" << CURRENT_TIME << "]" << endl;
+  cout << "index:" << index << endl;
 
-    printf("距離%0.2f\n" , rq->rq_exposure_list[kk]);
-    printf("lllllllllllllllllllllllllll%d\n" , nb->nb_addr);
-    printf("ノードID%d\n" , rq->rq_testlast_list[kk]);
-    kk++;
+  printf("距離%0.2f\n" , rq->rq_exposure_list[kk]);
+  printf("lllllllllllllllllllllllllll%d\n" , nb->nb_addr);
+  printf("ノードID%d\n" , rq->rq_testlast_list[kk]);
+  kk++;
   }
   printf("------------------------------------\n");
 
@@ -1755,164 +1761,132 @@ AODV::sendHello() {
   //printf("Neighbor list of Node ID :%d\n",index);
   for(; nb; nb = nb->nb_link.le_next) {
 
-    rq->rq_exposure_list[mm] = nb->nb_mdistance;   //01/10 nagumo
-    rq->rq_testlast_list[mm] = nb->nb_addr;   //01/10 nagumo
-          printf("距離%0.2f\n" , rq->rq_exposure_list[mm]);
-            printf("lllllllllllllllllllllllllll%d\n" , nb->nb_addr);
-            printf("ノードID%d\n" , rq->rq_testlast_list[mm]);
-            
-    mm++;
-  }
+  rq->rq_exposure_list[mm] = nb->nb_mdistance;   //01/10 nagumo
+  rq->rq_testlast_list[mm] = nb->nb_addr;   //01/10 nagumo
+  printf("距離%0.2f\n" , rq->rq_exposure_list[mm]);
+  printf("lllllllllllllllllllllllllll%d\n" , nb->nb_addr);
+  printf("ノードID%d\n" , rq->rq_testlast_list[mm]);
+
+  mm++;
+}
 */
 
 
 
-  /*		printf("sara%d\n" , rq->rq_sara);
-        printf("**********************************************\n");
-        printf("saraggggg%d\n" , rq->rq_sarag );
-        */
+/*		printf("sara%d\n" , rq->rq_sara);
+      printf("**********************************************\n");
+      printf("saraggggg%d\n" , rq->rq_sarag );
+      */
 
 
 
 
 
-    /*if(rq->rq_sara >= 10){
-      cout << "nbdetayoooo:" << rq->rq_sara << endl;
-      nb_delete();
-      }else{
-
-*/
-    Scheduler::instance().schedule(target_, p, 0.0);  //ＲＲＥＱ受付時間の設定 場所間違えているぽいね
-    //Scheduler::instance().schedule(target_, p, 0.5);  //追加 ＲＲＥＱ受付時間を0.05秒に設定 2017/06/07　nagumo
-  
-  }
-
-
-  void
-    //AddStart 2016/12/06
-    //ハローパケットを受け取った時に呼ばれるメソッド
-    //引数はパケットのオブジェクトなので、電波強度はそのまま参照可能
-    AODV::recvHello(Packet *p) {
-      //struct hdr_ip *ih = HDR_IP(p);
-      struct hdr_aodv_reply *rp = HDR_AODV_REPLY(p);//aodv_packet.h内に存在
-      struct hdr_aodv_request *rq = HDR_AODV_REQUEST(p);  //ポインタrqを通してRREQヘッダにアクセスできるようにする　nagumo
-      AODV_Neighbor *nb;	//aodv_rtable.h内に存在
-      //nb_lookupメソッドは、ネイバーリストすべてを最初から最後まで順番に参照し、与えた引数(送信元ノード番号)と
-      //すでに保持しているノード番号が一致するか（新しくパケットが来たノードか）を判断している
-      nb = nb_lookup(rp->rp_dst);
-      if(nb == 0) {
-        //ネイバーリストに無いノードからHELLOパケットを受け取った場合は、そのノード情報を、ネイバーリストに追加する
-        nb_insert(rp->rp_dst, p);
-
-        //AddStart 2017/01/05
-        //ネイバーリストの内容を、mobilenodeオブジェクトが持つ構造体にコピーする
-        nb_copy(p);
-      }
-      else {
-        //既にネイバーリストにあるノードからHELLOパケットを受け取った場合、そのノード情報の保持時間を伸ばす
-        nb->nb_expire = CURRENT_TIME +
-          (1.5 * ALLOWED_HELLO_LOSS * HELLO_INTERVAL);            
-        //AddStart 2017/01/05
-        nb->nb_distance = p->txinfo_.RxPr;
-        nb_copy(p);
-        
-        //printf("aaaaaa\t:\t%e (%0.2fm)\n", nb->nb_distance ,rev_threshold( nb->nb_distance ) ); //RSCH nagumo
-     
-      //nakabayashi start 2018/07/25
-
-
-      rq->rq_sara = 0;
-      rq->rq_sarag = 0;
-     
-  int kk =0;
-  for(; nb; nb = nb->nb_link.le_next) {
-
-       // rq->rq_exposure = nb->nb_mdistance;   //01/10 nagumo
-
-   // cout << "時間:[" << CURRENT_TIME << "]" << endl;
-   // cout << "index:" << index << endl;
-       // printf("Node ADDR\t\t:\t%d\n",nb->nb_addr);//ネイバーリストに格納されている隣接ノード
-       // printf("nfdonononononononononononR\t\t:\t%d\n",rq->rq_nodeid);//ネイバーリストに格納されている通信先
-       // printf("nb_expire\t\t:\t%f\n",nb->nb_expire);//ネイバーリスト保持時間
-       // printf("nb_distance\t:\t%f\n",nb->nb_distance);//その通信先までの距離
-       // printf("nb_distance(w)\t:\t%e (%0.2fm)\n", nb->nb_distance ,rev_threshold( nb->nb_distance ) ); //RSCH
-       // printf("nb_mdistance(w) (%0.2fm)\n", nb->nb_mdistance ); //RSCH nagumo
-       // printf("mmmmmmmmmmmmmmmm(w) (%0.2fm)\n", rq->rq_mdistance ); //RSCH nagumo
-        //cout << "dstenation????[" << rq->rq_dst << "]" << endl;
-        //cout << "srcccccccc????[" << rq->rq_src << "]" << endl;
-        //cout << "bcastId????[" << rq->rq_bcast_id << "]" << endl;
-   //     printf("---------------------------------\n");
-    //if(nb->nb_addr == id) break;
-    rq->rq_exposure_list[kk] = nb->nb_mdistance;   //01/10 nagumo
-    rq->rq_testlast_list[kk] = nb->nb_addr;   //01/10 nagumo
-    /*
-    cout << "時間:[" << CURRENT_TIME << "]" << endl;
-    cout << "index:" << index << endl;
-
-    printf("距離%0.2f\n" , rq->rq_exposure_list[kk]);
-    printf("lllllllllllllllllllllllllll%d\n" , nb->nb_addr);
-    printf("ノードID%d\n" , rq->rq_testlast_list[kk]);
-   */
-    kk++;
-  }
- // printf("===========================================\n");
-     
-  for(; nb; nb = nb->nb_link.le_next) {
-
-    if(rq->rq_nodeid == nb->nb_addr){
-      double dista = nb->nb_mdistance;
-
-      //    printf("test (w) (%0.2fm)\n", dista ); //RSCH nagumo
-      //    printf("test mdistance(w) (%0.2fm)\n", nb->nb_mdistance ); //RSCH nagumo
-      rq->rq_nodeid = index;
-      if(dista < nb->nb_mdistance ){
-
-      }
-    }
-  }
-  int M =0;
-  for(int m = 0; m < 100; m++){  //ノード数と配列の長さで回す数を変更
-    if(rq->rq_testlast_list[m] == index){
-      M = m;
-    }
-  };
-  double dista = rq->rq_exposure_list[M];
-
-  for(int s = 0; s <100; s++ ){
-    if(rq->rq_exposure_list[s] > dista){ //自身の距離より離れた（距離の大きい）ノードをカウントしている
-      rq->rq_sara++;
-     // printf("sara%d\n" , rq->rq_sara );
-    }
-
-  }
-
-  double hikaku = rq->rq_sara - rq->rq_sarag;
-
-
-
-  if(hikaku > 5){ 
-  //if(rq->rq_sarag < rq->rq_sara){ 
-
-    //cout << index << "番ノードがなくなりました：時間" << endl;
-    nb_delete(index);
-    sleep(5);
+/*if(rq->rq_sara >= 10){
+  cout << "nbdetayoooo:" << rq->rq_sara << endl;
+  nb_delete();
   }else{
 
-  rq->rq_sarag = rq->rq_sara;
-  //cout << index << "番ノードのさらし端末数[" << rq->rq_sarag << "]" << endl;
+*/
+Scheduler::instance().schedule(target_, p, 0.0);  //ＲＲＥＱ受付時間の設定 場所間違えているぽいね
+//Scheduler::instance().schedule(target_, p, 0.5);  //追加 ＲＲＥＱ受付時間を0.05秒に設定 2017/06/07　nagumo
+
+}
+
+
+void
+//AddStart 2016/12/06
+//ハローパケットを受け取った時に呼ばれるメソッド
+//引数はパケットのオブジェクトなので、電波強度はそのまま参照可能
+AODV::recvHello(Packet *p) {
+  //struct hdr_ip *ih = HDR_IP(p);
+  struct hdr_aodv_reply *rp = HDR_AODV_REPLY(p);//aodv_packet.h内に存在
+  struct hdr_aodv_request *rq = HDR_AODV_REQUEST(p);  //ポインタrqを通してRREQヘッダにアクセスできるようにする　nagumo
+  AODV_Neighbor *nb;	//aodv_rtable.h内に存在
+  //nb_lookupメソッドは、ネイバーリストすべてを最初から最後まで順番に参照し、与えた引数(送信元ノード番号)と
+  //すでに保持しているノード番号が一致するか（新しくパケットが来たノードか）を判断している
+  nb = nb_lookup(rp->rp_dst);
+  if(nb == 0) {
+    //ネイバーリストに無いノードからHELLOパケットを受け取った場合は、そのノード情報を、ネイバーリストに追加する
+    nb_insert(rp->rp_dst, p);
+
+    //AddStart 2017/01/05
+    //ネイバーリストの内容を、mobilenodeオブジェクトが持つ構造体にコピーする
+    nb_copy(p);
   }
- // printf("===========================================\n");   
+  else {
+    //既にネイバーリストにあるノードからHELLOパケットを受け取った場合、そのノード情報の保持時間を伸ばす
+    nb->nb_expire = CURRENT_TIME +
+      (1.5 * ALLOWED_HELLO_LOSS * HELLO_INTERVAL);            
+    //AddStart 2017/01/05
+    nb->nb_distance = p->txinfo_.RxPr;
+    nb_copy(p);
 
-     
-     
-     
-     
-     
-     
-      }
+    //printf("aaaaaa\t:\t%e (%0.2fm)\n", nb->nb_distance ,rev_threshold( nb->nb_distance ) ); //RSCH nagumo
 
-      Packet::free(p);
+    //nakabayashi start 2018/07/25
+
+
+    rq->rq_sara = 0;
+    rq->rq_sarag = 0;
+
+    int kk =0;
+    for(; nb; nb = nb->nb_link.le_next) {
+
+      rq->rq_exposure_list[kk] = nb->nb_mdistance;   //01/10 nagumo
+      rq->rq_testlast_list[kk] = nb->nb_addr;   //01/10 nagumo
+      kk++;
     }
+
+    for(; nb; nb = nb->nb_link.le_next) {
+
+      if(rq->rq_nodeid == nb->nb_addr){
+        double dista = nb->nb_mdistance;
+        rq->rq_nodeid = index;
+        if(dista < nb->nb_mdistance ){
+        }
+      }
+    }
+    int M =0;
+    for(int m = 0; m < 100; m++){  //ノード数と配列の長さで回す数を変更
+      if(rq->rq_testlast_list[m] == index){
+        M = m;
+      }
+    };
+    double dista = rq->rq_exposure_list[M];
+
+    for(int s = 0; s <100; s++ ){
+      if(rq->rq_exposure_list[s] > dista){ //自身の距離より離れた（距離の大きい）ノードをカウントしている
+        rq->rq_sara++;
+      }
+    }
+
+      double hikaku = rq->rq_sara - rq->rq_sarag;
+
+    //cout << index << "番ノードのさらし端末数[" << hikaku << "]" << "Time[" << CURRENT_TIME << "]" << endl;
+
+
+    if(hikaku > 5){ //X個以上さらし端末数が変化したら実行　
+
+    //  if(CURRENT_TIME > 10 && CURRENT_TIME < 11){ 10秒から11秒の間に実行
+    sarasiError(index);
+    }
+    else{
+    rq->rq_sarag = rq->rq_sara; //さらし端末数を比較するため
+    
+    //cout << index << "番ノードの追加さらし端末数[" << rq->rq_sarag << "]" << "Time[" << CURRENT_TIME << "]" << endl;
+    }
+    // printf("===========================================\n");   
+
+
+
+
+
+
+  }
+
+  Packet::free(p);
+  }
 
   void
     //ネイバーリストへの追加を行うメソッド
@@ -2111,3 +2085,44 @@ AODV::sendHello() {
         }
       }
     }
+
+
+void
+AODV::sarasiError(nsaddr_t id) {
+  aodv_rt_entry *rt, *rtn;
+  Packet *rerr = Packet::alloc();
+  struct hdr_aodv_error *re = HDR_AODV_ERROR(rerr);
+
+  re->DestCount = 0;
+  for(rt = rtable.head(); rt; rt = rtn) {  // for each rt entry　　　各rtエントリーについて
+
+    rtn = rt->rt_link.le_next; 
+    if ((rt->rt_hops != INFINITY2) || (rt->rt_nexthop == id) ) {
+      assert (rt->rt_flags == RTF_UP);
+      assert((rt->rt_seqno%2) == 0);
+      rt->rt_seqno++;
+      re->unreachable_dst[re->DestCount] = rt->rt_dst;
+      re->unreachable_dst_seqno[re->DestCount] = rt->rt_seqno;
+#ifdef DEBUG
+      fprintf(stderr, "%s(%f): %d\t(%d\t%u\t%d)\n", __FUNCTION__, CURRENT_TIME,
+          index, re->unreachable_dst[re->DestCount],
+          re->unreachable_dst_seqno[re->DestCount], rt->rt_nexthop);
+#endif // DEBUG
+      re->DestCount += 1;
+      rt_down(rt);
+    }
+    // remove the lost neighbor from all the precursor lists
+    // すべてのネイバーリストから失われた隣接ノードを取り除く
+    rt->pc_delete(id);
+  }   
+
+  if (re->DestCount > 0) {
+#ifdef DEBUG
+    fprintf(stderr, "%s(%f): %d\tsending RERR...\n", __FUNCTION__, CURRENT_TIME, index);
+#endif // DEBUG
+    sendError(rerr, false);
+  }
+  else {
+    Packet::free(rerr);
+  }
+}

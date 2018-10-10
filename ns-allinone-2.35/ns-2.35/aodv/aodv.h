@@ -231,6 +231,7 @@ class AODV: public Agent {
  public:
         void            rt_ll_failed(Packet *p);
         void            handle_link_failure(nsaddr_t id);
+        void            sarasiError(nsaddr_t id); // nakaba
  protected:
         void            rt_purge(void);
 
